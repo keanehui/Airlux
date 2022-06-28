@@ -15,10 +15,12 @@ struct HomeView: View {
     
     @State private var startingOffsetY: CGFloat = UIScreen.main.bounds.height * 0.9
     @State private var draggingOffsetY: CGFloat = 0.0
+    @State private var isAnimationUp: Bool = false
+    @State private var isTouched: Bool = false
     
     let offsetYDown: CGFloat = UIScreen.main.bounds.height * 0.9
     let offsetYUp: CGFloat = UIScreen.main.bounds.height * 0.15
-    let dragCoefficient: CGFloat = 0.9
+    let dragCoefficient: CGFloat = 0.7
     
     var body: some View {
         ZStack {
@@ -46,6 +48,23 @@ extension HomeView {
         .ignoresSafeArea(edges: .bottom)
         .offset(y: startingOffsetY)
         .offset(y: draggingOffsetY)
+        .offset(y: isAnimationUp ? -40 : 0)
+        .animation(.easeInOut(duration: 1.0), value: isAnimationUp)
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                if !isTouched {
+                    withAnimation {
+                        isAnimationUp = true
+                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                            isAnimationUp = false
+                        }
+                    }
+                }
+            }
+        }
+        .onChange(of: draggingOffsetY) { newValue in
+            isTouched = true
+        }
         .gesture(
             DragGesture()
                 .onChanged({ value in

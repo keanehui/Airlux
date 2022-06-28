@@ -10,28 +10,28 @@ import SwiftUI
 struct MenuView: View {
     var body: some View {
         VStack {
-            HStack {
+            HStack(spacing: 15) {
                 MetroBlock(color: .green, text: "Start", image: "bicycle", size: .Large)
                 MetroBlock(color: .cyan, text: "History", image: "list.bullet.indent", size: .Medium)
             }.padding(.bottom, 7)
-            HStack {
+            HStack(spacing: 15) {
                 MetroBlock(color: .red, text: "Routes", image: "arrow.triangle.swap",size: .XLarge)
             }
             .padding(.bottom, 30)
             
-            HStack {
+            HStack(spacing: 15) {
                 MetroBlock(color: .teal, text: "AQI", image: "wind", size: .Medium)
                 MetroBlock(color: .blue, text: "Weather", image: "cloud.sun", size: .Medium)
                 MetroBlock(color: .orange, text: "Traffic", image: "bus", size: .Medium)
             }
             .padding(.bottom, 30)
             
-            HStack {
+            HStack(spacing: 15) {
                 MetroBlock(color: .yellow, text: "Favorites", image: "star", size: .Medium)
                 MetroBlock(color: .purple, text: "Community", image: "house", size: .Large)
             }.padding(.bottom, 7)
-            HStack {
-                MetroBlock(color: .cyan, text: "Review", image: "star.bubble.fill", size: .Medium)
+            HStack(spacing: 15) {
+                MetroBlock(color: .cyan, text: "Reviews", image: "star.bubble.fill", size: .Medium)
                 MetroBlock(color: .indigo, text: "Add frd", image: "person.badge.plus", size: .Medium)
                 MetroBlock(color: .indigo, text: "Frends", image: "person.3", size: .Medium)
             }
@@ -63,19 +63,14 @@ struct MetroBlock: View {
                 .foregroundColor(.white)
                 .font(.system(size: size == .XLarge ? 45 : 38, weight: .bold, design: .rounded))
                 .padding(.bottom, 15)
-                
-                
-                
         }
-        
-        
     }
 }
 
 enum MetroBlockSize: CGFloat {
     case Medium = 100
-    case Large = 208
-    case XLarge = 315
+    case Large = 215
+    case XLarge = 330
 }
 
 struct MenuView_Previews: PreviewProvider {
