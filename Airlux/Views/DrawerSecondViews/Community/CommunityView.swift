@@ -25,6 +25,7 @@ struct CommunityView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding()
+            .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
         }
         

@@ -35,11 +35,8 @@ struct HomeView: View {
         ZStack(alignment: .center) {
             mapLayers
             drawer
-            if isSheetUp {
-                communitySheet
-                    .zIndex(3)
-                    .transition(.move(edge: .bottom).combined(with: .opacity).animation(.easeInOut))
-            }
+            communitySheet
+                .opacity(isSheetUp ? 1.0 : 0.0)
         }
         .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity)

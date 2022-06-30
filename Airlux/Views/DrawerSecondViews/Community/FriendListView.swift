@@ -35,10 +35,11 @@ struct FriendListView: View {
                 .bold()
             ScrollView(.vertical) {
                 ContactCard(icon: me.icon, firstName: me.firstName, lastName: me.lastName.uppercased(), opacity: 1.0)
+                    .padding(.top, 20)
                     .overlay(alignment: .trailing) {
                         Text("me")
                             .font(.system(size: 25, weight: .regular, design: .rounded))
-                            .foregroundColor(.gray)
+                            .foregroundColor(.white)
                             .padding(.trailing)
                     }
                 ForEach(friends, id: \.id) { friend in
@@ -52,6 +53,7 @@ struct FriendListView: View {
             }
             .padding(.horizontal)
         }
+        .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
 }
