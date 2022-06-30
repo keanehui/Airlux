@@ -45,6 +45,7 @@ extension CommunityView {
             Button {
                 withAnimation {
                     isSheetUp = false
+                    isDrawerUp = true
                 }
                 content = .Menu
             } label: {

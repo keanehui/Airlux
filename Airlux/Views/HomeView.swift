@@ -37,6 +37,7 @@ struct HomeView: View {
             drawer
             communitySheet
                 .opacity(isSheetUp ? 1.0 : 0.0)
+                .animation(.easeInOut(duration: 0.3), value: isSheetUp)
         }
         .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -171,15 +172,15 @@ extension HomeView {
             case .AQI:
                 MapCapsuleView(text: "AQI Map", onTap: resetMap)
                     .transition(.opacity.animation(.easeOut))
-                    .padding(.top, 65)
+                    .padding(.top, 100)
             case .Pollen:
                 MapCapsuleView(text: "Pollen Map", onTap: resetMap)
                     .transition(.opacity.animation(.easeOut))
-                    .padding(.top, 65)
+                    .padding(.top, 100)
             case .Traffic:
                 MapCapsuleView(text: "Traffic Map", onTap: resetMap)
                     .transition(.opacity.animation(.easeOut))
-                    .padding(.top, 65)
+                    .padding(.top, 100)
             default:
                 Text("No capsule")
             }
