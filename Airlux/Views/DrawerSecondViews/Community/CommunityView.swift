@@ -11,6 +11,7 @@ struct CommunityView: View {
     @Binding var content: MenuButtonType
     @Binding var isDrawerUp: Bool
     @Binding var isSheetUp: Bool
+    @Binding var isToFriendList: Bool
     
     var body: some View {
         NavigationView {
@@ -103,7 +104,8 @@ extension CommunityView {
                 profileIconAndName
                 VStack {
                     statistics
-                    NavigationLink {
+                    
+                    NavigationLink(isActive: $isToFriendList) {
                         FriendListView()
                     } label: {
                         Text("My Friends: 10")
@@ -113,6 +115,13 @@ extension CommunityView {
                         .foregroundColor(.white)
                         .cornerRadius(15)
                     }
+
+                    
+//                    NavigationLink {
+//
+//                    } label: {
+//
+//                    }
 
                 }
             }
@@ -184,6 +193,6 @@ extension CommunityView {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityView(content: .constant(.Community), isDrawerUp: .constant(true), isSheetUp: .constant(true))
+        CommunityView(content: .constant(.Community), isDrawerUp: .constant(true), isSheetUp: .constant(true), isToFriendList: .constant(false))
     }
 }

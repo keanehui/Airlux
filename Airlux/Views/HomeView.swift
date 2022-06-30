@@ -30,6 +30,7 @@ struct HomeView: View {
     // Drawer Sheet Content
     @State private var content: MenuButtonType = .Menu
     @State private var isSheetUp: Bool = false
+    @State private var isToFriendList: Bool = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -59,7 +60,7 @@ extension HomeView {
             RoundedRectangle(cornerRadius: 0.0)
                 .frame(width: UIScreen.main.bounds.width, height: 900)
                 .foregroundColor(.white)
-            CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+            CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isToFriendList: $isToFriendList)
                 .padding(.top, 100)
                 .padding(.bottom, 100)
         }
@@ -93,6 +94,11 @@ extension HomeView {
         case .Community:
             withAnimation {
                 isSheetUp = true
+            }
+        case .Friends:
+            withAnimation {
+                isSheetUp = true
+                isToFriendList = true
             }
         default:
             print()
