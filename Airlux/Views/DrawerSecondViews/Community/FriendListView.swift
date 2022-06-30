@@ -14,25 +14,25 @@ struct FriendListView: View {
     @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack {
-            HStack {
+            HStack(spacing: 0) {
                 Button {
                     dismiss()
                 } label: {
                     Label("Back", systemImage: "lessthan")
-                        .padding([.leading, .bottom])
+                        .padding(.horizontal)
                 }
                 Spacer()
-            }
-            HStack(spacing: 80) {
-                Text("\(friends.count) friends")
-                    .foregroundColor(.gray)
-                    .bold()
                 Button {
                     // send add friend request
                 } label: {
                     Label("Add Friend", systemImage: "plus")
+                        .padding(.horizontal)
                 }
             }
+            .padding(.bottom, 10)
+            Text("\(friends.count) friends")
+                .foregroundColor(.gray)
+                .bold()
             ScrollView(.vertical) {
                 ContactCard(icon: me.icon, firstName: me.firstName, lastName: me.lastName.uppercased(), opacity: 1.0)
                     .overlay(alignment: .trailing) {
