@@ -16,6 +16,7 @@ struct MapCapsuleView: View {
             Text(text)
                 .bold()
                 .foregroundColor(.blue)
+                .padding(.leading, 5)
             Divider()
                 .frame(maxHeight: 30)
             Button {

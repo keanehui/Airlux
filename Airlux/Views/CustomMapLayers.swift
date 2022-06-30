@@ -18,7 +18,7 @@ struct AQIMapView: View {
 
 struct PollenMapView: View {
     var body: some View {
-        WebView(fileName: "pollenMap")
+        WebView(fileName: "PollenMap")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
     }

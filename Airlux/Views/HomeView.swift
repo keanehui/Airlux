@@ -27,14 +27,21 @@ struct HomeView: View {
     let offsetYUp: CGFloat = UIScreen.main.bounds.height * 0.15
     let dragCoefficient: CGFloat = 0.7
     
-    // Drawer Content
-    @State private var content: DrawerContentPage = .Menu
+    // Drawer Sheet Content
+    @State private var content: MenuButtonType = .Menu
+    @State private var isSheetUp: Bool = false
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             mapLayers
             drawer
+            if isSheetUp {
+                communitySheet
+                    .zIndex(3)
+                    .transition(.move(edge: .bottom).combined(with: .opacity).animation(.easeInOut))
+            }
         }
+        .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onChange(of: isDrawerUp) { newValue in
             withAnimation(.spring()) {
@@ -48,6 +55,17 @@ struct HomeView: View {
 }
 
 extension HomeView {
+    
+    private var communitySheet: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 0.0)
+                .frame(width: UIScreen.main.bounds.width, height: 900)
+                .foregroundColor(.white)
+            CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                .padding(.top, 100)
+                .padding(.bottom, 100)
+        }
+    }
     
     private func resetMap() {
         withAnimation {
@@ -66,13 +84,17 @@ extension HomeView {
         }
     }
     
-    private func onChangeDrawerContent(newValue: DrawerContentPage) {
+    private func onChangeDrawerContent(newValue: MenuButtonType) {
         switch newValue {
         case .Menu:
             showTraffic = false
         case .Traffic:
             withAnimation {
                 showTraffic = true
+            }
+        case .Community:
+            withAnimation {
+                isSheetUp = true
             }
         default:
             print()
@@ -82,10 +104,11 @@ extension HomeView {
     private var drawer: some View {
         ZStack(alignment: .top) {
             drawerBoard
-            DrawerContentView(content: $content, isDrawerUp: $isDrawerUp)
+            MenuView(content: $content, isDrawerUp: $isDrawerUp)
                 .padding(.top, 50)
+//            DrawerContentView(content: $content, isDrawerUp: $isDrawerUp)
+//                .padding(.top, 50)
         }
-        .ignoresSafeArea(edges: .bottom)
         .offset(y: startingOffsetY)
         .offset(y: draggingOffsetY)
         .offset(y: isAnimationUp ? -60 : 0)
@@ -145,7 +168,6 @@ extension HomeView {
             PollenMapView()
                 .opacity(content == .Pollen ? 1.0 : 0.0)
         }
-        .ignoresSafeArea(edges: .all)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay(alignment: .top) {
             switch content {

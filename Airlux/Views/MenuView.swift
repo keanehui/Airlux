@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    @Binding var content: DrawerContentPage
+    @Binding var content: MenuButtonType
     @Binding var isDrawerUp: Bool
     
     var body: some View {
@@ -46,7 +46,13 @@ struct MenuView: View {
             
             HStack(spacing: 15) {
                 MetroBlock(color: .yellow, text: "Favorites", image: "star", size: .Small)
-                MetroBlock(color: .purple, text: "Community", image: "house", size: .Medium)
+                Button {
+                    content = .Community
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .purple, text: "Community", image: "house", size: .Medium)
+                }
+
             }.padding(.bottom, 7)
             HStack(spacing: 15) {
                 MetroBlock(color: .cyan, text: "Reviews", image: "star.bubble.fill", size: .Small)
@@ -90,6 +96,24 @@ enum MetroBlockSize: CGFloat {
     case Small = 100
     case Medium = 215
     case Large = 330
+}
+
+enum MenuButtonType: Int {
+    case Menu
+
+    case Start
+    case History
+    case Routes
+
+    case AQI
+    case Pollen
+    case Traffic
+
+    case Community
+    case Favorites
+    case Reviews
+    case AddFrd
+    case Friends
 }
 
 struct MenuView_Previews: PreviewProvider {
