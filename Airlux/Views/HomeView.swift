@@ -32,7 +32,7 @@ struct HomeView: View {
     
     var body: some View {
         ZStack {
-            mapLayer
+            mapLayers
             drawer
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -75,7 +75,7 @@ extension HomeView {
                 showTraffic = true
             }
         default:
-            print("no action")
+            print()
         }
     }
     
@@ -137,17 +137,35 @@ extension HomeView {
             }
     }
     
-    private var mapLayer: some View {
-        MapView(region: locationVM.region, showTraffic: showTraffic)
-            .ignoresSafeArea(edges: .all)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(alignment: .top) {
-                if content == .Traffic {
-                    MapCapsuleView(text: "Traffic Map", onTap: resetMap)
-                        .transition(.opacity.animation(.easeOut))
-                        .padding(.top, 65)
-                }
+    private var mapLayers: some View {
+        ZStack {
+            MapView(region: locationVM.region, showTraffic: showTraffic)
+            AQIMapView()
+                .opacity(content == .AQI ? 1.0 : 0.0)
+            PollenMapView()
+                .opacity(content == .Pollen ? 1.0 : 0.0)
+        }
+        .ignoresSafeArea(edges: .all)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay(alignment: .top) {
+            switch content {
+            case .AQI:
+                MapCapsuleView(text: "AQI Map", onTap: resetMap)
+                    .transition(.opacity.animation(.easeOut))
+                    .padding(.top, 65)
+            case .Pollen:
+                MapCapsuleView(text: "Pollen Map", onTap: resetMap)
+                    .transition(.opacity.animation(.easeOut))
+                    .padding(.top, 65)
+            case .Traffic:
+                MapCapsuleView(text: "Traffic Map", onTap: resetMap)
+                    .transition(.opacity.animation(.easeOut))
+                    .padding(.top, 65)
+            default:
+                Text("No capsule")
             }
+            
+        }
 //            .overlay(alignment: .topTrailing) {
 //                LocationButton(.currentLocation) {
 //                    print("requesting to update location...")

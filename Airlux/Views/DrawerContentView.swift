@@ -16,7 +16,9 @@ struct DrawerContentView: View {
         case .Menu:
             MenuView(content: $content, isDrawerUp: $isDrawerUp)
         case .AQI:
-            AQIView()
+            MenuView(content: $content, isDrawerUp: $isDrawerUp)
+        case .Pollen:
+            MenuView(content: $content, isDrawerUp: $isDrawerUp)
         case .Traffic:
             MenuView(content: $content, isDrawerUp: $isDrawerUp)
         default:
@@ -33,7 +35,7 @@ enum DrawerContentPage: Int {
     case Routes
     
     case AQI
-    case Weather
+    case Pollen
     case Traffic
     
     case Community

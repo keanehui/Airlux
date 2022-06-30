@@ -13,7 +13,14 @@ struct AQIMapView: View {
         WebView(fileName: "AQIMap")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .edgesIgnoringSafeArea(.all)
-            
+    }
+}
+
+struct PollenMapView: View {
+    var body: some View {
+        WebView(fileName: "pollenMap")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -49,6 +56,12 @@ extension WKWebView {
         } catch {
             print("WebView error: \(error.localizedDescription)")
         }
+    }
+}
+
+extension WKWebView {
+    override open var safeAreaInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 

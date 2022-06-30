@@ -23,11 +23,18 @@ struct MenuView: View {
             .padding(.bottom, 30)
             
             HStack(spacing: 15) {
-                MetroBlock(color: .teal, text: "AQI", image: "wind", size: .Small)
-                    .onTapGesture {
-                        content = .AQI
-                    }
-                MetroBlock(color: .blue, text: "Weather", image: "cloud.sun", size: .Small)
+                Button {
+                    content = .AQI
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .teal, text: "AQI", image: "wind", size: .Small)
+                }
+                Button {
+                    content = .Pollen
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .blue, text: "Pollen", image: "allergens", size: .Small)
+                }
                 Button {
                     content = .Traffic
                     isDrawerUp = false

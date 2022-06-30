@@ -11,7 +11,7 @@ import MapKit
 import SwiftUI
 
 final class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 22.3375, longitude: 114.2630), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 22.4263162384, longitude: 114.211648397), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
     
     let locationManager = CLLocationManager()
     
