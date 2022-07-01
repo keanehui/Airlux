@@ -15,6 +15,8 @@ struct ActivityCardView: View {
     var messageAge: Int = 0
     var boxHeight: CGFloat = 100
     
+    @State private var isPresenting: Bool = false
+    
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 15)
@@ -37,7 +39,7 @@ struct ActivityCardView: View {
                         .padding([.top, .trailing], 7)
                     
                     Button {
-                        // show route
+                        isPresenting = true
                     } label: {
                         Text("Show Details")
                             .font(.system(size: 12, weight: .bold, design: .rounded))
@@ -50,6 +52,16 @@ struct ActivityCardView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: boxHeight)
         .padding(.vertical, 15)
+        .sheet(isPresented: $isPresenting) {
+            RouteDetailsView(route: Route.samples[0])
+                .padding(.top, 50)
+                .overlay(alignment: .top) {
+                    Capsule()
+                        .fill(.secondary)
+                        .frame(width: 40, height: 5)
+                        .offset(y: 40)
+                }
+        }
     }
 }
 

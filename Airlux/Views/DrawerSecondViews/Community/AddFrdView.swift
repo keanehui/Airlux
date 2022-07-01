@@ -57,8 +57,8 @@ struct AddFrdView: View {
                                         .padding()
                                 }
                             }
+                            .padding(.bottom, person.firstName == "Seal" ? 80 : 0)
                     }
-                    
                 }
             }
             Spacer()

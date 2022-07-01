@@ -166,6 +166,12 @@ extension CommunityView {
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(Color(red: 0.69, green: 0.61, blue: 0.85))
                         .bold()
+                        .overlay(alignment: .trailing) {
+                            Circle()
+                                .fill(.green)
+                                .frame(width: 8)
+                                .offset(x: 10)
+                        }
                     Text("avg. AQI")
                         .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .multilineTextAlignment(.center)

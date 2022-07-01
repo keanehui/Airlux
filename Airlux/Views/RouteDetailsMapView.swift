@@ -45,7 +45,7 @@ struct RouteDetailsMapView: UIViewRepresentable {
             map.addAnnotation(p1Annotation)
             map.addAnnotation(p2Annotation)
             map.addOverlay(route.polyline)
-            map.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 25, left: 25, bottom: 25, right: 25), animated: true)
+            map.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 40, left: 20, bottom: 40, right: 20), animated: true)
         }
     
         print("Map Representable built")

@@ -17,8 +17,21 @@ struct RouteDetailsView: View {
         VStack(alignment: .center, spacing: 20) {
             RouteCardView(route: route, isSimple: true)
             RouteDetailsMapView(route: route)
-                .frame(height: 450)
+                .frame(height: 480)
                 .cornerRadius(20)
+                .overlay(alignment: .topLeading) {
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "star")
+                            .font(.system(size: 20, weight: .bold, design: .rounded))
+                            .foregroundColor(.gray)
+                            .padding()
+                            .background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 15))
+                            .padding()
+                    }
+                    
+                }
             Spacer()
         }
         .padding()

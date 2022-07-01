@@ -33,6 +33,7 @@ struct FriendListView: View {
                         ContactCard(icon: friend.icon, firstName: friend.firstName, lastName: friend.lastName.uppercased(), isFox: true)
                     } else {
                         ContactCard(icon: friend.icon, firstName: friend.firstName, lastName: friend.lastName.uppercased())
+                            .padding(.bottom, friend.firstName == "Fish" ? 80 : 0)
                     }
                 }
             }
