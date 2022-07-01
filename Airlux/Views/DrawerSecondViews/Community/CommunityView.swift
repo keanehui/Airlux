@@ -11,8 +11,6 @@ struct CommunityView: View {
     @Binding var content: MenuButtonType
     @Binding var isDrawerUp: Bool
     @Binding var isSheetUp: Bool
-    @Binding var isToFriendList: Bool
-    @Binding var isToAddFrd: Bool
     
     var body: some View {
         NavigationView {
@@ -44,11 +42,11 @@ extension CommunityView {
                 .foregroundColor(.black)
             Spacer()
             Button {
+                content = .Menu
                 withAnimation {
                     isSheetUp = false
                     isDrawerUp = true
                 }
-                content = .Menu
             } label: {
                 Image(systemName: "multiply")
                     .padding(10)
@@ -63,7 +61,7 @@ extension CommunityView {
         VStack {
             Group {
                 ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Sha Tin", message: "This route is popular among the Community. ")
-                ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ")
+                ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ", messageAge: 1)
                 ActivityCardView(type: .Friend, icon: "bird tweet", name: "Bird", message: "Your friend added a review on a route.  ", messageAge: 1)
                 ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Tai Po", message: "This route is popular among the Community. ", messageAge: 2)
                 ActivityCardView(type: .Friend, icon: "cow moo", name: "Cow", message: "Your friend is leading you by 5km this month.  ", messageAge: 5)
@@ -101,8 +99,8 @@ extension CommunityView {
                 profileIconAndName
                 VStack {
                     statistics
-                    NavigationLink(isActive: $isToFriendList) {
-                        FriendListView(isToAddFrd: $isToAddFrd)
+                    NavigationLink {
+                        FriendListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
                     } label: {
                         Text("My Friends: \(Person.friends.count)")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -181,6 +179,6 @@ extension CommunityView {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityView(content: .constant(.Community), isDrawerUp: .constant(true), isSheetUp: .constant(true), isToFriendList: .constant(false), isToAddFrd: .constant(false))
+        CommunityView(content: .constant(.Community), isDrawerUp: .constant(true), isSheetUp: .constant(true))
     }
 }

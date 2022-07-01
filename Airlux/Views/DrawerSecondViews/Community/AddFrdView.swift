@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct AddFrdView: View {
+    @Binding var content: MenuButtonType
+    @Binding var isDrawerUp: Bool
+    @Binding var isSheetUp: Bool
+    
+    var isShortCut: Bool = false
+    
     @State private var text: String = ""
     
     var body: some View {
@@ -59,11 +65,30 @@ struct AddFrdView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
+        .padding(.top, isShortCut ? 65 : 0)
+        .overlay(alignment: .topTrailing) {
+            if isShortCut {
+                Button {
+                    content = .Menu
+                    withAnimation {
+                        isSheetUp = false
+                        isDrawerUp = true
+                    }
+                } label: {
+                    Image(systemName: "multiply")
+                        .padding(10)
+                        .foregroundColor(.white)
+                        .background(.blue, in: Circle())
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .padding([.top, .horizontal])
+                }
+            }
+        }
     }
 }
 
 struct AddFrdView_Previews: PreviewProvider {
     static var previews: some View {
-        AddFrdView()
+        AddFrdView(content: .constant(.AddFrd), isDrawerUp: .constant(false), isSheetUp: .constant(true))
     }
 }

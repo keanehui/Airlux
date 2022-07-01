@@ -15,6 +15,9 @@
 		0763DCD3286F456B008C434B /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DCD2286F456B008C434B /* Route.swift */; };
 		0763DCD6286F53AA008C434B /* RouteListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DCD5286F53AA008C434B /* RouteListView.swift */; };
 		0763DCD8286F6961008C434B /* AddFrdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DCD7286F6961008C434B /* AddFrdView.swift */; };
+		0763DCDA286F838B008C434B /* RouteDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DCD9286F838B008C434B /* RouteDetailsView.swift */; };
+		0763DCDC286F8636008C434B /* RouteDetailsMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DCDB286F8636008C434B /* RouteDetailsMapView.swift */; };
+		0763DCDE286F8BE9008C434B /* RouteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0763DCDD286F8BE9008C434B /* RouteCardView.swift */; };
 		07B39394286E43DE0043B6CC /* FriendListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B39393286E43DE0043B6CC /* FriendListView.swift */; };
 		07B39397286E441F0043B6CC /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B39396286E441F0043B6CC /* Person.swift */; };
 		07DE0D3E286D497B0033C7A7 /* AQIMap.html in Resources */ = {isa = PBXBuildFile; fileRef = 07DE0D3D286D497B0033C7A7 /* AQIMap.html */; };
@@ -38,6 +41,9 @@
 		0763DCD2286F456B008C434B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		0763DCD5286F53AA008C434B /* RouteListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListView.swift; sourceTree = "<group>"; };
 		0763DCD7286F6961008C434B /* AddFrdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFrdView.swift; sourceTree = "<group>"; };
+		0763DCD9286F838B008C434B /* RouteDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailsView.swift; sourceTree = "<group>"; };
+		0763DCDB286F8636008C434B /* RouteDetailsMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailsMapView.swift; sourceTree = "<group>"; };
+		0763DCDD286F8BE9008C434B /* RouteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteCardView.swift; sourceTree = "<group>"; };
 		07B39393286E43DE0043B6CC /* FriendListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListView.swift; sourceTree = "<group>"; };
 		07B39396286E441F0043B6CC /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		07DE0D3D286D497B0033C7A7 /* AQIMap.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AQIMap.html; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 				07DE0D3F286D4A1D0033C7A7 /* CustomMapLayers.swift */,
 				07DE0D41286D7BBC0033C7A7 /* MapCapsuleView.swift */,
 				07E732BC286C37BC00B95CBA /* MapView.swift */,
+				0763DCDB286F8636008C434B /* RouteDetailsMapView.swift */,
 				075A5AD12868390F00F9180E /* HomeView.swift */,
 				07E732BA286C2F6900B95CBA /* MenuView.swift */,
 				07E732B5286C25DF00B95CBA /* DrawerSecondViews */,
@@ -125,7 +132,9 @@
 		0763DCD4286F539A008C434B /* Routes */ = {
 			isa = PBXGroup;
 			children = (
+				0763DCDD286F8BE9008C434B /* RouteCardView.swift */,
 				0763DCD5286F53AA008C434B /* RouteListView.swift */,
+				0763DCD9286F838B008C434B /* RouteDetailsView.swift */,
 			);
 			path = Routes;
 			sourceTree = "<group>";
@@ -233,6 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07E732BD286C37BC00B95CBA /* MapView.swift in Sources */,
+				0763DCDA286F838B008C434B /* RouteDetailsView.swift in Sources */,
+				0763DCDE286F8BE9008C434B /* RouteCardView.swift in Sources */,
+				0763DCDC286F8636008C434B /* RouteDetailsMapView.swift in Sources */,
 				07E732BB286C2F6900B95CBA /* MenuView.swift in Sources */,
 				0763DCD8286F6961008C434B /* AddFrdView.swift in Sources */,
 				07B39394286E43DE0043B6CC /* FriendListView.swift in Sources */,
@@ -383,7 +395,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -415,7 +427,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -30,8 +30,6 @@ struct HomeView: View {
     // Drawer Sheet Content
     @State private var content: MenuButtonType = .Menu
     @State private var isSheetUp: Bool = false
-    @State private var isToFriendList: Bool = false
-    @State private var isToAddFrd: Bool = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -64,12 +62,18 @@ extension HomeView {
             switch content {
             case .Routes:
                 RouteListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
-                    .padding(.top, 100)
+                    .padding(.top, 80)
             case .Community:
-                CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isToFriendList: $isToFriendList, isToAddFrd: $isToAddFrd)
-                    .padding(.top, 100)
+                CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                    .padding(.top, 80)
+            case .Friends:
+                FriendListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isShortCut: true)
+                    .padding(.top, 80)
+            case .AddFrd:
+                AddFrdView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isShortCut: true)
+                    .padding(.top, 80)
             default:
-                Text("No view")
+                Text("")
             }
             
         }
@@ -111,13 +115,10 @@ extension HomeView {
         case .Friends:
             withAnimation {
                 isSheetUp = true
-                isToFriendList = true
             }
         case .AddFrd:
             withAnimation {
                 isSheetUp = true
-                isToFriendList = true
-                isToAddFrd = true
             }
         default:
             print()

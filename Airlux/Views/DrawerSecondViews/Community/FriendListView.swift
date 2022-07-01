@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct FriendListView: View {
-    @Binding var isToAddFrd: Bool
+    @Binding var content: MenuButtonType
+    @Binding var isDrawerUp: Bool
+    @Binding var isSheetUp: Bool
+    var isShortCut = false
     
     let me = Person.me
     let friends = Person.friends
@@ -39,11 +42,30 @@ struct FriendListView: View {
         .navigationTitle("My Friends")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            NavigationLink(isActive: $isToAddFrd) {
-                AddFrdView()
+            NavigationLink {
+                AddFrdView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
             } label: {
                 Label("Add Friend", systemImage: "plus")
                     .padding(.horizontal)
+            }
+        }
+        .padding(.top, isShortCut ? 65 : 0)
+        .overlay(alignment: .topTrailing) {
+            if isShortCut {
+                Button {
+                    content = .Menu
+                    withAnimation {
+                        isSheetUp = false
+                        isDrawerUp = true
+                    }
+                } label: {
+                    Image(systemName: "multiply")
+                        .padding(10)
+                        .foregroundColor(.white)
+                        .background(.blue, in: Circle())
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
+                        .padding([.top, .horizontal])
+                }
             }
         }
     }
@@ -89,6 +111,6 @@ struct ContactCard: View {
 struct FriendListView_Previews: PreviewProvider {
     static var previews: some View {
 //        ContactCard(icon: Person.friends[0].icon, firstName: Person.friends[0].firstName, lastName: Person.friends[0].lastName.uppercased())
-        FriendListView(isToAddFrd: .constant(false))
+        FriendListView(content: .constant(.Friends), isDrawerUp: .constant(false), isSheetUp: .constant(true))
     }
 }
