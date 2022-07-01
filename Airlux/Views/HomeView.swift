@@ -61,9 +61,17 @@ extension HomeView {
             RoundedRectangle(cornerRadius: 0.0)
                 .frame(width: UIScreen.main.bounds.width, height: 900)
                 .foregroundColor(.white)
-            CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isToFriendList: $isToFriendList, isToAddFrd: $isToAddFrd)
-                .padding(.top, 100)
-                .padding(.bottom, 100)
+            switch content {
+            case .Routes:
+                RouteListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                    .padding(.top, 100)
+            case .Community:
+                CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isToFriendList: $isToFriendList, isToAddFrd: $isToAddFrd)
+                    .padding(.top, 100)
+            default:
+                Text("No view")
+            }
+            
         }
     }
     
@@ -91,6 +99,10 @@ extension HomeView {
         case .Traffic:
             withAnimation {
                 showTraffic = true
+            }
+        case .Routes:
+            withAnimation {
+                isSheetUp = true
             }
         case .Community:
             withAnimation {

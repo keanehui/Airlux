@@ -13,13 +13,22 @@ struct RouteListView: View {
     @Binding var isSheetUp: Bool
     
     var body: some View {
-        ScrollView(.vertical) {
-            ForEach(Route.samples, id: \.picture) { route in
-                RouteCardView(route: route)
-                    .padding(.vertical)
+        NavigationView {
+            VStack {
+                routeListHeader
+                ScrollView(.vertical) {
+                    Group {
+                        ForEach(Route.samples, id: \.picture) { route in
+                            RouteCardView(route: route)
+                                .padding(.vertical)
+                        }
+                    }
+                    .padding(.bottom, 50)
+                }
             }
+            .padding()
+            .navigationBarHidden(true)
         }
-        .padding()
     }
 }
 
@@ -27,7 +36,7 @@ extension RouteListView {
     
     private var routeListHeader: some View {
         HStack {
-            Text("Community")
+            Text("Popular Routes")
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.black)

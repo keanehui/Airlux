@@ -18,7 +18,12 @@ struct MenuView: View {
                 MetroBlock(color: .cyan, text: "History", image: "list.bullet.indent", size: .Small)
             }.padding(.bottom, 7)
             HStack(spacing: 15) {
-                MetroBlock(color: .red, text: "Routes", image: "arrow.triangle.swap",size: .Large)
+                Button {
+                    content = .Routes
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .red, text: "Routes", image: "arrow.triangle.swap",size: .Large)
+                }
             }
             .padding(.bottom, 30)
             

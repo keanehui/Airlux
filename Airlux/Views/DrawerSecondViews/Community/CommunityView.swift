@@ -74,6 +74,7 @@ extension CommunityView {
                 ActivityCardView(type: .Friend, icon: "frog croak", name: "Frog", message: "Your friend just finished a workout. ", messageAge: 53)
             }
         }
+        .padding(.bottom, 50)
     }
     
     private var customDivider: some View {
@@ -100,7 +101,6 @@ extension CommunityView {
                 profileIconAndName
                 VStack {
                     statistics
-                    
                     NavigationLink(isActive: $isToFriendList) {
                         FriendListView(isToAddFrd: $isToAddFrd)
                     } label: {
@@ -111,14 +111,6 @@ extension CommunityView {
                         .foregroundColor(.white)
                         .cornerRadius(15)
                     }
-
-                    
-//                    NavigationLink {
-//
-//                    } label: {
-//
-//                    }
-
                 }
             }
             .padding()
