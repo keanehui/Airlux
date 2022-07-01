@@ -31,12 +31,13 @@ struct HomeView: View {
     @State private var content: MenuButtonType = .Menu
     @State private var isSheetUp: Bool = false
     @State private var isToFriendList: Bool = false
+    @State private var isToAddFrd: Bool = false
     
     var body: some View {
         ZStack(alignment: .center) {
             mapLayers
             drawer
-            communitySheet
+            secondContentSheet
                 .opacity(isSheetUp ? 1.0 : 0.0)
                 .animation(.easeInOut(duration: 0.3), value: isSheetUp)
         }
@@ -55,12 +56,12 @@ struct HomeView: View {
 
 extension HomeView {
     
-    private var communitySheet: some View {
+    private var secondContentSheet: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 0.0)
                 .frame(width: UIScreen.main.bounds.width, height: 900)
                 .foregroundColor(.white)
-            CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isToFriendList: $isToFriendList)
+            CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isToFriendList: $isToFriendList, isToAddFrd: $isToAddFrd)
                 .padding(.top, 100)
                 .padding(.bottom, 100)
         }
@@ -99,6 +100,12 @@ extension HomeView {
             withAnimation {
                 isSheetUp = true
                 isToFriendList = true
+            }
+        case .AddFrd:
+            withAnimation {
+                isSheetUp = true
+                isToFriendList = true
+                isToAddFrd = true
             }
         default:
             print()

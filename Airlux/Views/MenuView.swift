@@ -56,7 +56,12 @@ struct MenuView: View {
             }.padding(.bottom, 7)
             HStack(spacing: 15) {
                 MetroBlock(color: .cyan, text: "Reviews", image: "star.bubble.fill", size: .Small)
-                MetroBlock(color: .indigo, text: "Add frd", image: "person.badge.plus", size: .Small)
+                Button {
+                    content = .AddFrd
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .indigo, text: "Add frd", image: "person.badge.plus", size: .Small)
+                }
                 Button {
                     content = .Friends
                     isDrawerUp = false

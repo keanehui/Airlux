@@ -12,6 +12,7 @@ struct CommunityView: View {
     @Binding var isDrawerUp: Bool
     @Binding var isSheetUp: Bool
     @Binding var isToFriendList: Bool
+    @Binding var isToAddFrd: Bool
     
     var body: some View {
         NavigationView {
@@ -26,11 +27,10 @@ struct CommunityView: View {
                 .frame(maxWidth: .infinity)
             }
             .padding()
+            .background(.white)
             .navigationBarBackButtonHidden(true)
             .navigationBarHidden(true)
         }
-        
-        
     }
 }
 
@@ -62,20 +62,16 @@ extension CommunityView {
     private var timeline: some View {
         VStack {
             Group {
-                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Mong Kok", message: "This route is popular among the Community.  ")
+                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Sha Tin", message: "This route is popular among the Community. ")
                 ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ")
-
-                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Mong Kok", message: "This route is popular among the Community.  ")
-                ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ")
-
-                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Mong Kok", message: "This route is popular among the Community.  ")
-                ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ")
-
-                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Mong Kok", message: "This route is popular among the Community.  ")
-                ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ")
-
-                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Mong Kok", message: "This route is popular among the Community.  ")
-                ActivityCardView(type: .Friend, icon: "dog woof", name: "Dog", message: "Your friend just explored a new route! ")
+                ActivityCardView(type: .Friend, icon: "bird tweet", name: "Bird", message: "Your friend added a review on a route.  ", messageAge: 1)
+                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Tai Po", message: "This route is popular among the Community. ", messageAge: 2)
+                ActivityCardView(type: .Friend, icon: "cow moo", name: "Cow", message: "Your friend is leading you by 5km this month.  ", messageAge: 5)
+                ActivityCardView(type: .Friend, icon: "duck quack", name: "Duck", message: "Your friend completed 4 routes in a week. ", messageAge: 13)
+                ActivityCardView(type: .Friend, icon: "elephant toot", name: "Elephant", message: "Your friend just starred a route.  ", messageAge: 14)
+                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Nam Sang Wai", message: "Air along this route will be good tomorrow.  ", messageAge: 33)
+                ActivityCardView(type: .Community, icon: "mappinAndCircle", name: "Tai Wai", message: "This route is popular among the Community. ", messageAge: 50)
+                ActivityCardView(type: .Friend, icon: "frog croak", name: "Frog", message: "Your friend just finished a workout. ", messageAge: 53)
             }
         }
     }
@@ -106,9 +102,9 @@ extension CommunityView {
                     statistics
                     
                     NavigationLink(isActive: $isToFriendList) {
-                        FriendListView()
+                        FriendListView(isToAddFrd: $isToAddFrd)
                     } label: {
-                        Text("My Friends: 10")
+                        Text("My Friends: \(Person.friends.count)")
                         .font(.system(size: 16, weight: .bold, design: .rounded))
                         .padding(10)
                         .background(Color(red: 0.69, green: 0.61, blue: 0.85))
@@ -193,6 +189,6 @@ extension CommunityView {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityView(content: .constant(.Community), isDrawerUp: .constant(true), isSheetUp: .constant(true), isToFriendList: .constant(false))
+        CommunityView(content: .constant(.Community), isDrawerUp: .constant(true), isSheetUp: .constant(true), isToFriendList: .constant(false), isToAddFrd: .constant(false))
     }
 }

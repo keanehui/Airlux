@@ -24,11 +24,13 @@ extension Person {
         Person(icon: "dog woof", firstName: "Dog", lastName: "Woof"),
         Person(icon: "duck quack", firstName: "Duck", lastName: "Quack"),
         Person(icon: "elephant toot", firstName: "Elephant", lastName: "Toot"),
-        Person(icon: "fish blub", firstName: "Fish", lastName: "Blub"),
+        Person(icon: "fish blub", firstName: "Fish", lastName: "Blub")
+    ]
+    
+    static let peopleYouMightKnow: [Person] = [
         Person(icon: "fox ring-ding-ding-ding-dingeringeding", firstName: "Fox", lastName: "Ring-ding-ding-ding-dingeringeding"),
         Person(icon: "frog croak", firstName: "Frog", lastName: "Croak"),
         Person(icon: "mouse squeek", firstName: "Mouse", lastName: "Squeek"),
         Person(icon: "seal owowow", firstName: "Seal", lastName: "Owowow")
     ]
-    
 }

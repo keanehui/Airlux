@@ -8,34 +8,17 @@
 import SwiftUI
 
 struct FriendListView: View {
+    @Binding var isToAddFrd: Bool
+    
     let me = Person.me
     let friends = Person.friends
     
-    @Environment(\.dismiss) private var dismiss
     var body: some View {
         VStack {
-            HStack(spacing: 0) {
-                Button {
-                    dismiss()
-                } label: {
-                    Label("Back", systemImage: "lessthan")
-                        .padding(.horizontal)
-                }
-                Spacer()
-                Button {
-                    // send add friend request
-                } label: {
-                    Label("Add Friend", systemImage: "plus")
-                        .padding(.horizontal)
-                }
-            }
-            .padding(.bottom, 10)
-            Text("\(friends.count) friends")
-                .foregroundColor(.gray)
-                .bold()
             ScrollView(.vertical) {
+                Text("\(friends.count) friends")
+                    .foregroundColor(.gray)
                 ContactCard(icon: me.icon, firstName: me.firstName, lastName: me.lastName.uppercased(), opacity: 1.0)
-                    .padding(.top, 20)
                     .overlay(alignment: .trailing) {
                         Text("me")
                             .font(.system(size: 25, weight: .regular, design: .rounded))
@@ -48,13 +31,21 @@ struct FriendListView: View {
                     } else {
                         ContactCard(icon: friend.icon, firstName: friend.firstName, lastName: friend.lastName.uppercased())
                     }
-                    
                 }
             }
             .padding(.horizontal)
         }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarHidden(true)
+        .background(.white)
+        .navigationTitle("My Friends")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            NavigationLink(isActive: $isToAddFrd) {
+                AddFrdView()
+            } label: {
+                Label("Add Friend", systemImage: "plus")
+                    .padding(.horizontal)
+            }
+        }
     }
 }
 
@@ -79,7 +70,6 @@ struct ContactCard: View {
                     .shadow(color: .gray.opacity(0.5), radius: 10)
                     .padding(.horizontal)
                     .offset(x: 0, y: -20)
-                Spacer()
                 VStack(alignment: .leading) {
                     Text(firstName)
                         .font(.title)
@@ -99,6 +89,6 @@ struct ContactCard: View {
 struct FriendListView_Previews: PreviewProvider {
     static var previews: some View {
 //        ContactCard(icon: Person.friends[0].icon, firstName: Person.friends[0].firstName, lastName: Person.friends[0].lastName.uppercased())
-        FriendListView()
+        FriendListView(isToAddFrd: .constant(false))
     }
 }
