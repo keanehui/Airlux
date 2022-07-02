@@ -115,7 +115,7 @@ struct RouteCardView: View {
                                 }
                                 .foregroundColor(.yellow)
                             }
-                            .offset(x: 20, y: 15)
+                            .offset(x: 25, y: 20)
                         }
                 }
             }

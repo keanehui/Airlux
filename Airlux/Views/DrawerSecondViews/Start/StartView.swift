@@ -19,12 +19,24 @@ struct StartView: View {
         VStack {
             startHeader
             goalBox
-                .padding(.bottom, 10)
+                .padding(.vertical)
             CircularMapView()
                 .cornerRadius(15)
                 .opacity(isSet ? 1.0 : 0.0)
                 .animation(.easeInOut, value: isSet)
-                .frame(maxWidth: .infinity, maxHeight: 400)
+                .frame(maxWidth: .infinity, maxHeight: 350)
+            Button {
+                
+            } label: {
+                Text("Start")
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(25)
+                    .background(.green, in: Circle())
+                    .padding(.top, 5)
+            }
+            .opacity(isSet ? 1.0 : 0.0)
+            .animation(.easeInOut, value: isSet)
         }
         .padding()
     }
@@ -90,20 +102,21 @@ extension StartView {
                             isSet = true
                         } label: {
                             Text("Set")
-                                .font(.system(size: 12, weight: .bold, design: .rounded))
+                                .font(.system(size: 15, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
-                                .padding(7)
-                                .padding(.horizontal, 10)
-                                .background(.green, in: RoundedRectangle(cornerRadius: 10))
-                                .padding(.bottom)
+                                .padding()
+                                .background(isSet ? .gray.opacity(0.3) : .yellow, in: Circle())
+
                         }
+                        .disabled(isSet)
                     }
                     .padding(.trailing)
                 }
+                .padding(.bottom)
                 Spacer()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: 220)
+        .frame(maxWidth: .infinity, maxHeight: 200)
     }
     
     private var infoBlock: some View {

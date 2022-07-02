@@ -70,7 +70,7 @@ struct CircularMapView: UIViewRepresentable {
             map.addAnnotation(p2Annotation)
             map.addOverlay(route.polyline)
         }
-        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 22.40569522724577, longitude: 114.20727923879144), span: MKCoordinateSpan(latitudeDelta: 0.06, longitudeDelta: 0.06)), animated: true)
+        map.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 22.40569522724577, longitude: 114.20727923879144), span: MKCoordinateSpan(latitudeDelta: 0.065, longitudeDelta: 0.065)), animated: true)
         print("Map Representable built")
         return map
     }

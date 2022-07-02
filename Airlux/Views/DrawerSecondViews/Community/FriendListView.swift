@@ -66,7 +66,7 @@ struct FriendListView: View {
                                         .overlay(Circle().stroke(Color.white, lineWidth: 0.5))
                                         .offset(x: 10)
                                 }
-                            Text("avgAQI")
+                            Text("avg. AQI")
                                 .font(.caption2)
                                 .bold()
                                 .foregroundColor(.white)
