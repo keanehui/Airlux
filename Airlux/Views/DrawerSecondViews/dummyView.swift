@@ -9,15 +9,7 @@ import SwiftUI
 
 struct dummyView: View {
     var body: some View {
-        ZStack {
-            Circle()
-                .fill(.white)
-            Image(systemName: "mappin.and.ellipse")
-                .font(.system(size: 100, weight: .bold, design: .rounded))
-                .aspectRatio(contentMode: .fill)
-                .foregroundColor(.red)
-                
-        }
+        CircularMapView()
     }
 }
 

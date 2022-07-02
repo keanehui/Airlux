@@ -13,15 +13,17 @@ import CoreLocation
 struct RouteDetailsView: View {
     var route: Route
     
+    @State private var isPresentedAdd: Bool = false
+    
     var body: some View {
         VStack(alignment: .center, spacing: 20) {
             RouteCardView(route: route, isSimple: true)
             RouteDetailsMapView(route: route)
-                .frame(height: 480)
+                .frame(height: 390)
                 .cornerRadius(20)
                 .overlay(alignment: .topLeading) {
                     Button(action: {
-                        
+                        isPresentedAdd = true
                     }) {
                         Image(systemName: "star")
                             .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -32,6 +34,16 @@ struct RouteDetailsView: View {
                     }
                     
                 }
+                .alert("Added to Forvorites", isPresented: $isPresentedAdd, actions: {})
+            Button {
+                
+            } label: {
+                Text("Start")
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(25)
+                    .background(.green, in: Circle())
+            }
             Spacer()
         }
         .padding()

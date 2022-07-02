@@ -14,7 +14,12 @@ struct MenuView: View {
     var body: some View {
         VStack(alignment: .center) {
             HStack(spacing: 15) {
-                MetroBlock(color: .green, text: "Start", image: "bicycle", size: .Medium)
+                Button {
+                    content = .Start
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .green, text: "Start", image: "bicycle", size: .Medium)
+                }
                 MetroBlock(color: .cyan, text: "History", image: "list.bullet.indent", size: .Small)
             }.padding(.bottom, 7)
             HStack(spacing: 15) {
@@ -50,7 +55,12 @@ struct MenuView: View {
             .padding(.bottom, 30)
             
             HStack(spacing: 15) {
-                MetroBlock(color: .yellow, text: "Favorites", image: "star", size: .Small)
+                Button {
+                    content = .Favorites
+                    isDrawerUp = false
+                } label: {
+                    MetroBlock(color: .yellow, text: "Favorites", image: "star", size: .Small)
+                }
                 Button {
                     content = .Community
                     isDrawerUp = false

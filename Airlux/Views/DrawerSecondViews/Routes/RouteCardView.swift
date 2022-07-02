@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RouteCardView: View {
     var route: Route
-    
     var isSimple: Bool = false
     
     var body: some View {
@@ -20,10 +19,46 @@ struct RouteCardView: View {
                 dottedLine
                 startAndEnd
                 HStack(spacing: 50) {
+                    if isSimple {
+                        VStack {
+                            Text("\(route.AQI)")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.white)
+                                .overlay(alignment: .trailing) {
+                                    Circle()
+                                        .fill(route.AQIColor)
+                                        .frame(width: 8)
+                                        .overlay(Circle().stroke(Color.white, lineWidth: 0.5))
+                                        .offset(x: 10)
+                                }
+                            Text("AQI")
+                                .font(.caption2)
+                                .bold()
+                                .foregroundColor(.white)
+                        }
+                    }
                     Text("\(route.distance) km")
                         .font(.title2)
                         .bold()
                         .foregroundColor(.white)
+                    if isSimple {
+                        VStack {
+                            HStack(spacing: 0) {
+                                Text("\(route.rating)")
+                                    .font(.title3)
+                                    .bold()
+                                    .foregroundColor(.white)
+                                Text("/3")
+                                    .font(.system(size: 10, weight: .regular, design: .rounded))
+                                    .foregroundColor(.white)
+                            }
+                            Text("rating")
+                                .font(.caption2)
+                                .bold()
+                                .foregroundColor(.white)
+                        }
+                    }
                     if !isSimple {
                         NavigationLink {
                             RouteDetailsView(route: route)
@@ -52,6 +87,36 @@ struct RouteCardView: View {
                         .overlay(RoundedRectangle(cornerRadius: 17)
                                     .stroke(Color.white, lineWidth: 5))
                         .padding()
+                        .overlay(alignment: .topLeading) {
+                            HStack(spacing: 10) {
+                                VStack {
+                                    Text("\(route.AQI)")
+                                        .font(.title3)
+                                        .bold()
+                                        .foregroundColor(.white)
+                                    Text("AQI")
+                                        .font(.caption2)
+                                        .bold()
+                                        .foregroundColor(.white)
+                                }
+                                .padding()
+                                .background(.green, in: Circle())
+                                HStack {
+                                    Group {
+                                        Image(systemName: "star.fill")
+                                        Image(systemName: "star.fill")
+                                        if route.rating == 2 {
+                                            Image(systemName: "star")
+                                        } else if route.rating == 3 {
+                                            Image(systemName: "star.fill")
+                                        }
+                                    }
+                                    .font(.system(size: 22, weight: .bold, design: .rounded))
+                                }
+                                .foregroundColor(.yellow)
+                            }
+                            .offset(x: 20, y: 15)
+                        }
                 }
             }
         }

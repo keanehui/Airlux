@@ -15,6 +15,7 @@ struct AddFrdView: View {
     var isShortCut: Bool = false
     
     @State private var text: String = ""
+    @State private var isPresented: Bool = false
     
     var body: some View {
         VStack {
@@ -37,7 +38,7 @@ struct AddFrdView: View {
                         ContactCard(icon: person.icon, firstName: person.firstName, lastName: person.lastName.uppercased(), isFox: true)
                             .overlay(alignment: .trailing) {
                                 Button {
-                                    
+                                    isPresented = true
                                 } label: {
                                     Image(systemName: "plus")
                                         .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -45,11 +46,12 @@ struct AddFrdView: View {
                                         .padding()
                                 }
                             }
+                            .alert("Friend Request Sent", isPresented: $isPresented, actions: {})
                     } else {
                         ContactCard(icon: person.icon, firstName: person.firstName, lastName: person.lastName.uppercased())
                             .overlay(alignment: .trailing) {
                                 Button {
-                                    
+                                    isPresented = true
                                 } label: {
                                     Image(systemName: "plus")
                                         .font(.system(size: 20, weight: .bold, design: .rounded))
@@ -58,6 +60,7 @@ struct AddFrdView: View {
                                 }
                             }
                             .padding(.bottom, person.firstName == "Seal" ? 80 : 0)
+                            .alert("Friend Request Sent", isPresented: $isPresented, actions: {})
                     }
                 }
             }

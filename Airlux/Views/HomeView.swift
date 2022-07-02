@@ -54,17 +54,60 @@ struct HomeView: View {
 
 extension HomeView {
     
+    private func onChangeDrawerContent(newValue: MenuButtonType) {
+        switch newValue {
+        case .Menu:
+            showTraffic = false
+        case .Start:
+            withAnimation {
+                isSheetUp = true
+            }
+        case .Traffic:
+            withAnimation {
+                showTraffic = true
+            }
+        case .Routes:
+            withAnimation {
+                isSheetUp = true
+            }
+        case .Community:
+            withAnimation {
+                isSheetUp = true
+            }
+        case .Favorites:
+            withAnimation {
+                isSheetUp = true
+            }
+        case .Friends:
+            withAnimation {
+                isSheetUp = true
+            }
+        case .AddFrd:
+            withAnimation {
+                isSheetUp = true
+            }
+        default:
+            print()
+        }
+    }
+    
     private var secondContentSheet: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 0.0)
                 .frame(width: UIScreen.main.bounds.width, height: 900)
                 .foregroundColor(.white)
             switch content {
+            case .Start:
+                StartView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                    .padding(.top, 20)
             case .Routes:
                 RouteListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
                     .padding(.top, 80)
             case .Community:
                 CommunityView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                    .padding(.top, 80)
+            case .Favorites:
+                FavoritesView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isShortCut: true)
                     .padding(.top, 80)
             case .Friends:
                 FriendListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp, isShortCut: true)
@@ -93,35 +136,6 @@ extension HomeView {
             } else {
                 startingOffsetY = offsetYDown
             }
-        }
-    }
-    
-    private func onChangeDrawerContent(newValue: MenuButtonType) {
-        switch newValue {
-        case .Menu:
-            showTraffic = false
-        case .Traffic:
-            withAnimation {
-                showTraffic = true
-            }
-        case .Routes:
-            withAnimation {
-                isSheetUp = true
-            }
-        case .Community:
-            withAnimation {
-                isSheetUp = true
-            }
-        case .Friends:
-            withAnimation {
-                isSheetUp = true
-            }
-        case .AddFrd:
-            withAnimation {
-                isSheetUp = true
-            }
-        default:
-            print()
         }
     }
     

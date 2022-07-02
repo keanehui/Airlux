@@ -99,15 +99,26 @@ extension CommunityView {
                 profileIconAndName
                 VStack {
                     statistics
-                    NavigationLink {
-                        FriendListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
-                    } label: {
-                        Text("My Friends: \(Person.friends.count)")
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .padding(10)
-                        .background(Color(red: 0.69, green: 0.61, blue: 0.85))
-                        .foregroundColor(.white)
-                        .cornerRadius(15)
+                    HStack(spacing: 20) {
+                        NavigationLink {
+                            FriendListView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                        } label: {
+                            Text("My Friends")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .padding(10)
+                            .background(Color(red: 0.69, green: 0.61, blue: 0.85))
+                            .foregroundColor(.white)
+                            .cornerRadius(15)
+                        }
+                        NavigationLink {
+                            FavoritesView(content: $content, isDrawerUp: $isDrawerUp, isSheetUp: $isSheetUp)
+                        } label: {
+                            Image(systemName: "star")
+                                .font(.system(size: 20, weight: .bold, design: .rounded))
+                                .foregroundColor(.white)
+                                .padding(8)
+                                .background(.yellow, in: RoundedRectangle(cornerRadius: 15.0))
+                        }
                     }
                 }
             }
@@ -162,13 +173,13 @@ extension CommunityView {
                         .foregroundColor(.gray.opacity(0.5))
                 }
                 VStack {
-                    Text("42")
+                    Text("\(Person.me.AQI)")
                         .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(Color(red: 0.69, green: 0.61, blue: 0.85))
                         .bold()
                         .overlay(alignment: .trailing) {
                             Circle()
-                                .fill(.green)
+                                .fill(Person.me.AQIColor)
                                 .frame(width: 8)
                                 .offset(x: 10)
                         }

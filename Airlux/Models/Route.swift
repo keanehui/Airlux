@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import CoreLocation
+import SwiftUI
 
 struct Route {
     var start: String
@@ -16,6 +17,17 @@ struct Route {
     var endXY: CLLocationCoordinate2D
     var distance: Int = 0
     var picture: String = ""
+    var rating: Int = Int.random(in: 2...3)
+    var AQI = Int.random(in: 20...49)
+    var AQIColor: Color {
+        if AQI < 50 {
+            return .green
+        } else if AQI < 70 {
+            return .orange
+        } else {
+            return .red
+        }
+    }
 }
 
 extension Route {

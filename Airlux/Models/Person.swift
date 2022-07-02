@@ -6,17 +6,30 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Person: Identifiable {
     var icon: String
     var firstName: String
     var lastName: String
+    var lastTarget: Int = 0
+    
+    var AQI = Int.random(in: 20...100)
+    var AQIColor: Color {
+        if AQI < 50 {
+            return .green
+        } else if AQI < 70 {
+            return .orange
+        } else {
+            return .red
+        }
+    }
     var id: UUID = UUID()
 }
 
 extension Person {
     
-    static let me: Person = Person(icon: "cat meow", firstName: "Cat", lastName: "Meow")
+    static let me: Person = Person(icon: "cat meow", firstName: "Cat", lastName: "Meow", lastTarget: 16)
     
     static let friends: [Person] = [
         Person(icon: "bird tweet", firstName: "Bird", lastName: "Tweet"),

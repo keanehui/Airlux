@@ -22,18 +22,57 @@ struct FriendListView: View {
                 Text("\(friends.count) friends")
                     .foregroundColor(.gray)
                 ContactCard(icon: me.icon, firstName: me.firstName, lastName: me.lastName.uppercased(), opacity: 1.0)
+                    .overlay(alignment: .topTrailing, content: {
+                        VStack {
+                            Text("\(me.AQI)")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.white)
+                                .overlay(alignment: .trailing) {
+                                    Circle()
+                                        .fill(me.AQIColor)
+                                        .frame(width: 8)
+                                        .overlay(Circle().stroke(Color.white, lineWidth: 0.5))
+                                        .offset(x: 10)
+                                }
+                            Text("avg. AQI")
+                                .font(.caption2)
+                                .bold()
+                                .foregroundColor(.white)
+                        }
+                        .padding(.trailing)
+                        .padding(.top, 50)
+                    })
                     .overlay(alignment: .trailing) {
                         Text("me")
-                            .font(.system(size: 25, weight: .regular, design: .rounded))
-                            .foregroundColor(.white)
+                            .font(.system(size: 20, weight: .regular, design: .rounded))
+                            .foregroundColor(.gray.opacity(0.7))
                             .padding(.trailing)
+                            .offset(y: 30)
                     }
                 ForEach(friends, id: \.id) { friend in
-                    if friend.firstName.lowercased() == "fox" {
-                        ContactCard(icon: friend.icon, firstName: friend.firstName, lastName: friend.lastName.uppercased(), isFox: true)
-                    } else {
-                        ContactCard(icon: friend.icon, firstName: friend.firstName, lastName: friend.lastName.uppercased())
-                            .padding(.bottom, friend.firstName == "Fish" ? 80 : 0)
+                    ContactCard(icon: friend.icon, firstName: friend.firstName, lastName: friend.lastName.uppercased())
+                    .padding(.bottom, friend.firstName == "Fish" ? 80 : 0)
+                    .overlay(alignment: .topTrailing) {
+                        VStack {
+                            Text("\(friend.AQI)")
+                                .font(.title3)
+                                .bold()
+                                .foregroundColor(.white)
+                                .overlay(alignment: .trailing) {
+                                    Circle()
+                                        .fill(friend.AQIColor)
+                                        .frame(width: 8)
+                                        .overlay(Circle().stroke(Color.white, lineWidth: 0.5))
+                                        .offset(x: 10)
+                                }
+                            Text("avgAQI")
+                                .font(.caption2)
+                                .bold()
+                                .foregroundColor(.white)
+                        }
+                        .padding(.trailing)
+                        .padding(.top, 50)
                     }
                 }
             }

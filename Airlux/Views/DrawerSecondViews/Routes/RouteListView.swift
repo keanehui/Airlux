@@ -36,7 +36,7 @@ extension RouteListView {
     
     private var routeListHeader: some View {
         HStack {
-            Text("Popular Routes")
+            Text("Today's Featured")
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
